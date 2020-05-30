@@ -3,7 +3,7 @@
 #######################################################
 #
 # MARIADB INSTALL
-# ref : https://mariadb.com/resources/blog/how-to-install-mariadb-on-rhel8-centos8/
+# ref : https://mariadb.com/resources/blog/installing-mariadb-10-on-centos-7-rhel-7/
 # ref : https://mariadb.com/kb/en/mysql_secure_installation/
 #
 #######################################################
@@ -16,10 +16,8 @@ then
        rm -f ./mariadb_repo_setup
 fi
 
-sudo dnf install -y perl-DBI libaio libsepol lsof boost-program-options
-sudo dnf install --disablerepo=AppStream --repo="mariadb-main" -y MariaDB-server
-
-sudo mysql_install_db
+sudo yum install MariaDB-server
 sudo systemctl start mariadb.service
 sudo systemctl enable mariadb.service
+
 sudo mysql_secure_installation

@@ -4,25 +4,23 @@
 #
 # NGINX INSTALL
 # ref : https://www.nginx.com/resources/wiki/start/topics/tutorials/install/
-# ref : https://www.getpagespeed.com/server-setup/nginx/how-to-install-latest-stable-nginx-on-rhel-8-centos-8-properly
-# ref : https://linuxconfig.org/install-nginx-on-redhat-8
 #
 #####################################################
 
-echo "[nginx]
-name=nginx repo
-releasever=8
-baseurl=http://nginx.org/packages/centos/\$releasever/\$basearch/
-gpgcheck=0
-enabled=1" > /etc/yum.repos.d/nginx.repo
+## 저장소 생성 
+sudo cp template/nginx.repo /etc/yum.repos.d/nginx.repo
+sudo chown root:root /etc/yum.repos.d/nginx.repo
 
-# disable appstream
-dnf --disablerepo=AppStream -y install nginx
+# 설치
+sudo yum -y install nginx
+sudo cp template/nginx.conf /etc/nginx/nginx.conf
+sudo chown root:root /etc/nginx/nginx.conf
 
-systemctl start nginx
-systemctl enable nginx
+# 웹서버 시작 및 등록
+sudo systemctl start nginx
+sudo systemctl enable nginx
 
-# firewall open
-firewall-cmd --zone=public --permanent --add-service=http
-firewall-cmd --zone=public --permanent --add-service=https
-firewall-cmd --reload
+# 방화벽오픈 
+sudo firewall-cmd --zone=public --permanent --add-service=http
+sudo firewall-cmd --zone=public --permanent --add-service=https
+sudo firewall-cmd --reload

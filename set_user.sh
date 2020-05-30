@@ -45,13 +45,14 @@ sudo chown -R ${sudo_user}:${sudo_user} /home/${sudo_user}/.ssh
 
 # DOWNLOAD CONFIRM
 ip=$(sudo hostname -I | sed -e 's/^ *//g' -e 's/ *$//g')
-echo "scp root@${ip}:/home/${sudo_user}/.ssh/${sudo_user} ./ssh"
+echo "scp root@${ip}:/home/${sudo_user}/.ssh/${sudo_user} .ssh/{Server Label}"
 echo "DOWNLOAD PRIVATE KEY ?"
 while :
 do
 read -rp "Yes or No) " cf
 case $cf in
         Yes)
+		rm /home/${sudo_user}/.ssh/${sudo_user}
                 echo "Good!! please login ${sudo_user} And Setup"
                 break
         ;;
