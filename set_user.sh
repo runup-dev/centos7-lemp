@@ -11,7 +11,7 @@
 #####################################################
 
 # CREATE USER
-sudo_user=runup-user
+sudo_user=${sudo_user}
 userdel -r ${sudo_user}
 useradd ${sudo_user}
 #passwd ${sudo_user}
