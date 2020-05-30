@@ -20,28 +20,32 @@ LEMP 스펙
 
 # 사용방법 
 
-ROOT권한으로 쉘에접속후 아래코드를 실행합니다
-(SUDO유저 생성 및 개인키 배포)
-
+1. ROOT권한으로 쉘에접속후 아래코드를 실행합니다
+- SUDO유저 생성 및 개인키 배포
+```
 ./set_user.sh {SUDO유저명}
+```
 
 
-
-개인키를 다운로드후 SUDO권한 유저로 쉘에 접속합니다
+2. 개인키를 다운로드후 SUDO권한 유저로 쉘에 접속합니다
 
 한번에 설치하려면 아래를 실행합니다
-
+```
 ./set.sh
-
+```
 
 단계별로 설치하려면 아래를 실행합니다
-(순서별로 NGINX -> PHP 7.3 -> MARIADB -> 추가패키지)
 
-
+```
+#NGINX 설치
 ./set_webserver.sh
 
+#PHP설치
 ./set_php.sh
 
+#MARIADB설치
 ./set_database.sh
 
+#추가패키지설치
 ./set_package.sh
+```
