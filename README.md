@@ -26,9 +26,8 @@ LEMP 스펙
 <pre>
 <code>
 ./set_user.sh {SUDO유저명}
-</pre>
 </code>
-
+</pre>
 
 2. 개인키를 다운로드후 SUDO권한 유저로 쉘에 접속합니다
 - 한번에 설치하려면 아래를 실행합니다
