@@ -1,4 +1,4 @@
-# centos7-LEMP
+# CENTOS-LEMP소개
 
 LEMP 스펙을 구축하는 쉘스크립트 입니다 
 CENTOS7을 기준으로 작성되었습니다 
@@ -18,25 +18,27 @@ LEMP 스펙
  - Let's Encrypt
 
 
-ROOT권한으로 쉘에접속후 아래를 실행합니다 
+#사용방법 
+
+1. ROOT권한으로 쉘에접속후 아래코드를 실행합니다 
 ./set_user.sh {SUDO유저명}
 
-개인키를 다운로드후 SUDO권한 유저로 쉘에 접속합니다
-한번에 설치하려면 아래를 실행합니다
 
-# 전체설치
+2. 개인키를 다운로드후 SUDO권한 유저로 쉘에 접속합니다
+
+한번에 설치하려면 아래를 실행합니다
 ./set.sh
 
 단계별로 설치하려면 아래를 실행합니다
 
-# NGINX 설치
+NGINX 설치
 ./set_webserver.sh
 
-# PHP설치
+PHP7.3 설치
 ./set_php.sh
 
-# Mariadb설치
+MARIADB 설치
 ./set_database.sh
 
-# 추가패키지 설치 
+추가패키지 설치 
 ./set_package.sh
