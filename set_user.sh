@@ -10,8 +10,33 @@
 #
 #####################################################
 
+#############################
+#SET VARIANT FROM PARAMETER
+#############################
+while getopts u:p: option
+do
+ case "${option}"
+ in
+ u) sudo_user=${OPTARG};;
+ p) sudo_user_pw=${OPTARG};;
+ esac
+done
+
+## USER CHECK
+if [ -z $sudo_user ]
+then
+ echo "UserName is Required Option Name is -u"
+ exit
+fi
+
+## USER CHECK
+if [ -z $sudo_user_pw ]
+then
+ echo "UserPassword is Required Option Name is -p"
+ exit
+fi
+
 # CREATE USER
-sudo_user=${sudo_user}
 userdel -r ${sudo_user}
 useradd ${sudo_user}
 #passwd ${sudo_user}
@@ -38,14 +63,16 @@ fi
 # CREATE PRIVATE KEY
 sudo mkdir -p /home/${sudo_user}/.ssh
 sudo chmod 700 /home/${sudo_user}/.ssh
-ssh-keygen -t rsa -b 4096 -f /home/${sudo_user}/.ssh/${sudo_user} -P "Runup@)9070"
+ssh-keygen -t rsa -b 4096 -f /home/${sudo_user}/.ssh/${sudo_user} -P ${sudo_user_pw}
 sudo mv /home/${sudo_user}/.ssh/${sudo_user}.pub /home/${sudo_user}/.ssh/authorized_keys
 sudo chmod 600 /home/${sudo_user}/.ssh/authorized_keys
 sudo chown -R ${sudo_user}:${sudo_user} /home/${sudo_user}/.ssh
 
 # DOWNLOAD CONFIRM
+hostname=$(sudo hostname)
 ip=$(sudo hostname -I | sed -e 's/^ *//g' -e 's/ *$//g')
-echo "scp root@${ip}:/home/${sudo_user}/.ssh/${sudo_user} .ssh/{Server Label}"
+echo "scp root@${ip}:/home/${sudo_user}/.ssh/${sudo_user} {Local Location}/${hostname}/${sudo_user}"
+
 echo "DOWNLOAD PRIVATE KEY ?"
 while :
 do
@@ -67,9 +94,9 @@ esac
 done
 
 # PASSWORD LOGIN DISABLE
-sudo sed -i "/^[^#]*PasswordAuthentication[[:space:]]no/c\PasswordAuthentication yes" /etc/ssh/sshd_config
+# sudo sed -i "/^[^#]*PasswordAuthentication[[:space:]]no/c\PasswordAuthentication yes" /etc/ssh/sshd_config
 
 # ROOT LOGIN DISABLE
-sudo sed -i "/^[^#]*PermitRootLogin[[:space:]]yes/c\PermitRootLogin no" /etc/ssh/sshd_config
+# sudo sed -i "/^[^#]*PermitRootLogin[[:space:]]yes/c\PermitRootLogin no" /etc/ssh/sshd_config
 
-sudo systemctl restart sshd
+# sudo systemctl restart sshd
