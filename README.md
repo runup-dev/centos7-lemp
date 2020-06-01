@@ -37,7 +37,7 @@ sudo yum  install -y git
 # LEMP구축 스크립트 다운로드 
 git clone https://github.com/runup-dev/centos7-lemp.git
 cd centos7-lemp
-cd centos7-lemp
+
 # NGINX 설치
 ./set_webserver.sh
 
