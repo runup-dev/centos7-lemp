@@ -1,4 +1,4 @@
-# CENTOS-LEMP소개
+## CENTOS-LEMP소개
 
 LEMP 스펙을 구축하는 쉘스크립트 입니다 
 CENTOS7을 기준으로 작성되었습니다 
@@ -18,13 +18,12 @@ LEMP 스펙
 SUDO유저생성( 개인키인증 ) 
  - 관리자로그인 / 패스워드 로그인 OFF 권장 
 
-# 사용방법 
+## 사용방법 
 
 1. ROOT권한으로 쉘에접속후 아래코드를 실행합니다
 
 <pre>
 <code>
-
 # TIMEZONE SET
 timedatectl set-timezone Asia/Seoul     
 
@@ -59,7 +58,7 @@ shutdown -r
 </code>
 </pre>
 
-2. SUDO유저권한으로 로그인 후 이상이 없으면 ROOT 로그인 / 패스워드 로그인을 OFF 하시길 권장드립니다
+2. SUDO유저권한으로 로그인 후 이상이 없으면 ROOT 로그인 / 패스워드 로그인을 OFF 하시길 권장드립니다   
 - 수정방법은 아래와 같습니다 
  
 <pre>
